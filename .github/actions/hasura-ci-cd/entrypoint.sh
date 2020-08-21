@@ -34,17 +34,37 @@ fi
 
 # If migrations are enabled
 if [ -n "$INPUT_HASURA_MIGRATIONS_ENABLED" ]; then
-  echo "Running migrations"
+  echo "Preparing to apply migrations and metadata"
   # If admin secret given in inputs, append it to migrate apply, else don't (use default from config.yaml)
   if [ -n "$INPUT_HASURA_ENDPOINT" ]; then
-    echo "Running: hasura migrate apply --endpoint $INPUT_HASURA_ENDPOINT --admin-secret $INPUT_HASURA_ADMIN_SECRET"
+    echo "Migration status:"
+    hasura migrate status --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
+      echo "Failed getting migration status"
+      exit 1
+    }
+    echo "Applying migrations"
     hasura migrate apply --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
       echo "Failed applying migrations"
       exit 1
     }
+    echo "Applying metadata"
+    hasura metadata apply --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
+      echo "Failed applying migrations"
+      exit 1
+    }
   else
-    echo "Running: hasura migrate apply --admin-secret $INPUT_HASURA_ADMIN_SECRET"
+    echo "Migration status:"
+    hasura migrate status --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
+      echo "Failed getting migration status"
+      exit 1
+    }
+    echo "Applying migrations"
     hasura migrate apply --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
+      echo "Failed applying migrations"
+      exit 1
+    }
+    echo "Applying metadata"
+    hasura metadata apply --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
       echo "Failed applying migrations"
       exit 1
     }
