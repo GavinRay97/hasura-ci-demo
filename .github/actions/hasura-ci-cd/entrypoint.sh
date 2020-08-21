@@ -5,7 +5,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 debug() {
-  printf "ℹ️ ${CYAN}%s${NC}", "$1"
+  printf "ℹ️ ${CYAN}%s${NC}\n", "$1"
 }
 
 # Github Action special logging tags
