@@ -1,0 +1,1 @@
+CREATE TABLE "public"."second_table"("id" serial NOT NULL, "name" text NOT NULL, "first_table_id" integer NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("first_table_id") REFERENCES "public"."first_table"("id") ON UPDATE restrict ON DELETE restrict);
