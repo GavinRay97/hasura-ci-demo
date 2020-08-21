@@ -22,7 +22,6 @@ chmod +x /usr/local/bin/hasura || {
   exit 1
 }
 
-echo "No path to Hasura project root given, using top-level repo directory"
 # CD into Hasura project root directory, if given and not current directory
 if [ -n "$INPUT_PATH_TO_HASURA_PROJECT_ROOT" ]; then
   echo "cd'ing to Hasura project root at $INPUT_PATH_TO_HASURA_PROJECT_ROOT"
@@ -30,8 +29,11 @@ if [ -n "$INPUT_PATH_TO_HASURA_PROJECT_ROOT" ]; then
     echo "Failed to cd into directory $INPUT_PATH_TO_HASURA_PROJECT_ROOT"
     exit 1
   }
+else
+  echo "No path to Hasura project root given, using top-level repo directory"
 fi
 
+# Oh man this is so ugly, but I'm not sure if adding --endpoint with no value would nullify and break it.
 # If migrations are enabled
 if [ -n "$INPUT_HASURA_MIGRATIONS_ENABLED" ]; then
   echo "Preparing to apply migrations and metadata"
