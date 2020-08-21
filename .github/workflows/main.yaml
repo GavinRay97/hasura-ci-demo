@@ -16,7 +16,7 @@ jobs:
         with:
           PATH_TO_HASURA_PROJECT_ROOT: ./hasura
           HASURA_CLI_VERSION: v1.3.1-beta.1
-          HASURA_ENDPOINT: https://immortal-mullet-99.hasura.app/v1/graphql
+          HASURA_ENDPOINT: https://immortal-mullet-99.hasura.app
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
           HASURA_MIGRATIONS_ENABLED: true
           # HASURA_REGRESSION_TESTS_ENABLED: false
