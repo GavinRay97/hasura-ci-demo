@@ -1,5 +1,7 @@
 #!/bin/sh
 
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
@@ -7,13 +9,12 @@ debug() {
   printf "ℹ️ ${CYAN}%s${NC}\n", "$1"
 }
 
-# Github Action special logging tags
 warn() {
-  echo "::warning::$1"
+  printf "⚠️ ${YELLOW}%s${NC}\n", "$1"
 }
 
 error() {
-  echo "::error::$1"
+  printf "❌ ${RED}%s${NC}\n", "$1"
 }
 
 # If a CLI version was given to Github Action inputs, then use that, otherwise default to latest release
