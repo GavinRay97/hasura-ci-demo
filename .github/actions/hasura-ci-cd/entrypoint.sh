@@ -1,10 +1,14 @@
 #!/bin/sh
 
-# Github Action special logging tags
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
 debug() {
-  echo "::debug::$1"
+  printf "ℹ️ ${CYAN}%s${NC}", "$1"
 }
 
+# Github Action special logging tags
 warn() {
   echo "::warning::$1"
 }
