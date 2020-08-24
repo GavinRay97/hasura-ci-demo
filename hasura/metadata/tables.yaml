@@ -3,6 +3,9 @@
     name: first_table
 - table:
     schema: public
+    name: fouth_table
+- table:
+    schema: public
     name: second_table
 - table:
     schema: public
