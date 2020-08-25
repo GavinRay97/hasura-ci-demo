@@ -32,7 +32,7 @@ wget --quiet --output-document /usr/local/bin/hasura "$hasura_cli_download_url" 
   exit 1
 }
 
-echo "Making Hasura CLI executable"
+debug "Making Hasura CLI executable"
 # Make it executable
 chmod +x /usr/local/bin/hasura || {
   error 'Failed making CLI executable'
