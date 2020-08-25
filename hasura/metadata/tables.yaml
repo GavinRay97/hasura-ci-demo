@@ -1,5 +1,8 @@
 - table:
     schema: public
+    name: fifth_table
+- table:
+    schema: public
     name: first_table
 - table:
     schema: public
