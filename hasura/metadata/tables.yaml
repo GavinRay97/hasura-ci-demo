@@ -12,4 +12,7 @@
     name: second_table
 - table:
     schema: public
+    name: some_view
+- table:
+    schema: public
     name: third_table
