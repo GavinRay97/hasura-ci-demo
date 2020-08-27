@@ -1,4 +1,7 @@
 - table:
+    schema: otherschema
+    name: some_table
+- table:
     schema: public
     name: fifth_table
 - table:
@@ -9,7 +12,13 @@
     name: fouth_table
 - table:
     schema: public
+    name: newest_table
+- table:
+    schema: public
     name: second_table
+- table:
+    schema: public
+    name: sixth_table
 - table:
     schema: public
     name: some_view
