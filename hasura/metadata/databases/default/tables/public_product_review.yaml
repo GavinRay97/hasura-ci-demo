@@ -1,0 +1,75 @@
+delete_permissions:
+- permission:
+    filter: {}
+  role: site-admin
+- permission:
+    filter:
+      user:
+        id:
+          _eq: X-Hasura-User-Id
+        orders:
+          products:
+            id:
+              _ceq: product_id
+  role: user
+insert_permissions:
+- permission:
+    check: {}
+    columns: "*"
+  role: site-admin
+- permission:
+    check:
+      user:
+        id:
+          _eq: X-Hasura-User-Id
+        orders:
+          products:
+            id:
+              _ceq: product_id
+    columns:
+    - rating
+    - comment
+  role: user
+object_relationships:
+- name: product
+  using:
+    foreign_key_constraint_on: product_id
+- name: user
+  using:
+    foreign_key_constraint_on: user_id
+select_permissions:
+- permission:
+    columns: "*"
+    filter: {}
+  role: anonymous
+- permission:
+    columns: "*"
+    filter: {}
+  role: site-admin
+- permission:
+    columns: "*"
+    filter: {}
+  role: user
+table:
+  name: product_review
+  schema: public
+update_permissions:
+- permission:
+    check: null
+    columns: "*"
+    filter: {}
+  role: site-admin
+- permission:
+    check: null
+    columns:
+    - rating
+    - comment
+    filter:
+      user:
+        id:
+          _eq: X-Hasura-User-Id
+        orders:
+          products:
+            id:
+              _ceq: product_id
+  role: user
