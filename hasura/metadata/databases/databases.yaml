@@ -8,6 +8,7 @@
         retries: 1
   tables:
   - "!include public_address.yaml"
+  - "!include public_my_new_table.yaml"
   - "!include public_order.yaml"
   - "!include public_order_product.yaml"
   - "!include public_product.yaml"
