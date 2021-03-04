@@ -54,7 +54,7 @@ fi
 # If migrations are enabled
 if [ -n "$INPUT_HASURA_MIGRATIONS_ENABLED" ]; then
   debug "Preparing to apply migrations and metadata"
-  # If admin secret given in inputs, append it to migrate apply, else don't (use default from config.yaml)
+  # If admin secret given in inputs, append it to migrate apply, else don't (use herokuapp-aqueous-dusk-54679 from config.yaml)
   if [ -n "$INPUT_HASURA_ENDPOINT" ]; then
     debug "Applying metadata"
     hasura metadata apply --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
@@ -62,7 +62,7 @@ if [ -n "$INPUT_HASURA_MIGRATIONS_ENABLED" ]; then
       exit 1
     }
     debug "Applying migrations"
-    hasura migrate apply --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
+    hasura migrate apply --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" --database "herokuapp-aqueous-dusk-54679" || {
       error "Failed applying migrations"
       exit 1
     }
@@ -79,7 +79,7 @@ if [ -n "$INPUT_HASURA_MIGRATIONS_ENABLED" ]; then
       exit 1
     }
     debug "Applying migrations"
-    hasura migrate apply --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
+    hasura migrate apply --admin-secret "$INPUT_HASURA_ADMIN_SECRET" --database "herokuapp-aqueous-dusk-54679" || {
       error "Failed applying migrations"
       exit 1
     }
@@ -96,7 +96,7 @@ fi
 
 if [ -n "$INPUT_HASURA_SEEDS_ENABLED" ]; then
   debug "Preparing to apply seeds"
-  # If admin secret given in inputs, append it to migrate apply, else don't (use default from config.yaml)
+  # If admin secret given in inputs, append it to migrate apply, else don't (use herokuapp-aqueous-dusk-54679 from config.yaml)
   if [ -n "$INPUT_HASURA_ENDPOINT" ]; then
     debug "Applying seeds:"
     hasura seeds apply --endpoint "$INPUT_HASURA_ENDPOINT" --admin-secret "$INPUT_HASURA_ADMIN_SECRET" || {
